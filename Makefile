@@ -1,14 +1,26 @@
-CFLAGS = -std=c++17 -O2 -DNDEBUG
+CFLAGS = -std=c++17
 
-DBGCFLAGS = -std=c++17 -O0 -g -DNDEBUG
+RLSCFLAGS = -O2 -DNDEBUG
+DBGCFLAGS = -std=c++17 -O0 -g
 
-rayTracing: src/main.cpp
-	g++ $(CFLAGS) -o rayTracing src/main.cpp $(LDFLAGS)
+SRCFILES = src/main.cpp
 
-.PHONY: test clean 
+rayTracing: $(SRCFILES)
+	g++ $(CFLAGS) $(RLSCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
+
+rayTracingDebug: $(SRCFILES)
+	g++ $(CFLAGS) $(DBGCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
+
+.PHONY: test clean debug
 
 test: rayTracing
-	./rayTracing
+	./rayTracing > my_img.ppm
+	gwenview my_img.ppm
+
+debug: rayTracingDebug
+	gdb rayTracingDebug
+
 clean:
-	rm -f builds/$(NAME)
+	rm -f builds/*
+
 
