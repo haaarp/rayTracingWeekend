@@ -1,26 +1,22 @@
-CFLAGS = -std=c++17
-
-RLSCFLAGS = -O2 -DNDEBUG
-DBGCFLAGS = -std=c++17 -O0 -g
-
+CXX = g++
+CXXFLAGS = -std=c++17 -O2
+BLDDIR = builds
+TARGET = $(BLDDIR)/rayTracing
 SRCFILES = src/main.cpp
 
-rayTracing: $(SRCFILES)
-	g++ $(CFLAGS) $(RLSCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
+$(BLDDIR):
+	mkdir -p $(BLDDIR)
 
-rayTracingDebug: $(SRCFILES)
-	g++ $(CFLAGS) $(DBGCFLAGS) -o rayTracingDebug $(SRCFILES) $(LDFLAGS)
-
-.PHONY: test clean debug
+rayTracing: $(SRCFILES) | $(BLDDIR)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCFILES)
 
 test: rayTracing
-	./rayTracing > my_img.ppm
-	gwenview my_img.ppm
-
-debug: rayTracingDebug
-	gdb rayTracingDebug
+	./$(TARGET) > $(BLDDIR)/my_img.ppm
+	echo "Image saved to $(BLDDIR)/my_img.ppm"
+	gwenview $(BLDDIR)/my_img.ppm 
 
 clean:
-	rm -f builds/*
+	rm -rf $(BLDDIR)
 
+.PHONY: test clean
 
