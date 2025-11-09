@@ -7,17 +7,16 @@
 
 // color of a ray
 color ray_color(const ray& r) {
-
     vec3 unit_direction = unit_vector(r.direction());
     auto a = 0.5*(unit_direction.y() + 1.0);
     // linear interpolation between max color value of 1.0 (black) and min color
     // value (blue) 
-    return (1.0-a)*color(1.0, 1.0, 1.0) + a*color(0.5, 0.7, 1.0);
+    return (1.0-a)*color(0.0, 0.0, 0.0) + a*color(1.0, 1.0, 1.0);
 }
 
 int main() {
     // Image 
-    int image_width = 400;
+    int image_width = 50;
     double aspect_ratio = 16.0/9.0;
 
     // Calculate image height
