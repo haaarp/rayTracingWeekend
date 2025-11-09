@@ -9,7 +9,7 @@ rayTracing: $(SRCFILES)
 	g++ $(CFLAGS) $(RLSCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
 
 rayTracingDebug: $(SRCFILES)
-	g++ $(CFLAGS) $(DBGCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
+	g++ $(CFLAGS) $(DBGCFLAGS) -o rayTracingDebug $(SRCFILES) $(LDFLAGS)
 
 .PHONY: test clean debug
 
