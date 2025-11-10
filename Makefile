@@ -15,8 +15,7 @@ rayTracingDebug: $(SRCFILES)
 .PHONY: test clean debug
 
 test: rayTracing
-	./rayTracing > my_img.ppm
-	gwenview my_img.ppm
+	./rayTracing > my_img.ppm && gwenview my_img.ppm
 
 debug: rayTracingDebug
 	gdb rayTracingDebug
