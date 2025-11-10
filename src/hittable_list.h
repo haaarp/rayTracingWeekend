@@ -3,12 +3,9 @@
 
 #include "hittable.h"
 
-#include <memory>
 #include <vector>
 
 //shared pointer has a counter included, for better memory management.
-using std::make_shared;
-using std::shared_ptr;
 
 class hittable_list : public hittable {
     public:
