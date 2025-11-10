@@ -1,15 +1,16 @@
-CFLAGS = -std=c++17
+CXX = g++
+CXXFLAGS = -std=c++17
 
-RLSCFLAGS = -O2 -DNDEBUG
-DBGCFLAGS = -std=c++17 -O0 -g
+RLSCXXFLAGS = -O2 -DNDEBUG
+DBGCXXFLAGS = -O0 -g
 
 SRCFILES = src/main.cpp
 
 rayTracing: $(SRCFILES)
-	g++ $(CFLAGS) $(RLSCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
+	g++ $(CXXFLAGS) $(RLSCXXFLAGS) -o rayTracing $(SRCFILES)
 
 rayTracingDebug: $(SRCFILES)
-	g++ $(CFLAGS) $(DBGCFLAGS) -o rayTracing $(SRCFILES) $(LDFLAGS)
+	g++ $(CXXFLAGS) $(DBGCXXFLAGS) -o rayTracingDebug $(SRCFILES)
 
 .PHONY: test clean debug
 
@@ -21,6 +22,6 @@ debug: rayTracingDebug
 	gdb rayTracingDebug
 
 clean:
-	rm -f builds/*
+	rm -f rayTracing rayTracingDebug
 
 
