@@ -5,11 +5,12 @@ RLSCXXFLAGS = -O2 -DNDEBUG
 DBGCXXFLAGS = -O0 -g
 
 SRCFILES = src/main.cpp
+OFILES = src/*.h
 
-rayTracing: $(SRCFILES)
+rayTracing: $(SRCFILES) $(OFILES)
 	g++ $(CXXFLAGS) $(RLSCXXFLAGS) -o rayTracing $(SRCFILES)
 
-rayTracingDebug: $(SRCFILES)
+rayTracingDebug: $(SRCFILES) $(OFILES)
 	g++ $(CXXFLAGS) $(DBGCXXFLAGS) -o rayTracingDebug $(SRCFILES)
 
 .PHONY: test clean debug
