@@ -7,7 +7,7 @@
 #include <memory>
 
 
-// C++ Std Usings
+// C++ Std Using
 
 using std::make_shared;
 using std::shared_ptr;
