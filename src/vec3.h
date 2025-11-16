@@ -1,7 +1,6 @@
 #ifndef VEC3_H
 #define VEC3_H
 
-#include "rtweekend.h"
 class vec3 {
 
     public:
@@ -48,6 +47,12 @@ class vec3 {
         return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
     }
 
+    bool near_zero() const {
+        // return true if the vector is close to zero in all directions
+
+        auto s = 1e-8;
+        return (std::fabs(e[0]) < s) && (std::fabs(e[1]) < s) && (std::fabs(e[2]) < s);
+    }
 
     static vec3 random() {
         return vec3(random_double(),random_double(),random_double());
@@ -57,9 +62,6 @@ class vec3 {
     static vec3 random(double min, double max) {
         return vec3(random_double(min,max), random_double(min,max), random_double(min,max));
     }
-
-
-        
 
 };
 
@@ -130,6 +132,18 @@ inline vec3 random_on_hemisphere(const vec3& normal) {
      // In the same hemisphere as the normal
     if ( dot(on_unit_sphere, normal) > 0.0 ) { return on_unit_sphere;}
     else { return -on_unit_sphere; }
+}
+
+inline vec3 reflect(const vec3& v, const vec3& n) {
+    return v - 2*dot(v,n)*n;
+}
+
+inline vec3 refract(const vec3& uv, const vec3& n, double etai_over_etat) {
+    auto cos_theta = std::fmin(dot(-uv, n), 1.0);
+    vec3 r_out_perp = etai_over_etat * (uv + cos_theta*n);
+    vec3 r_out_parallel = -std::sqrt(std::fabs(1.0 - r_out_perp.length_squared())) * n;
+    return r_out_perp + r_out_parallel;
+
 }
 
 #endif
