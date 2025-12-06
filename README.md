@@ -1,4 +1,4 @@
 # Final Image
 
-![]("final_image.png")
+![](final_image.png)
 
