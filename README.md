@@ -1,3 +1,4 @@
-# Final Low Res Image
+# Final Image
 
-![]("final_low_res.png")
+![]("final_image.png")
+
