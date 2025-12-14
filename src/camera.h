@@ -110,8 +110,10 @@ class  camera {
 
             auto ray_origin = (defocus_angle <=0) ? center : defocus_disc_sample();
             auto ray_direction = pixel_sample - ray_origin;
+	    auto ray_time = random_double();
 
-            return ray(ray_origin, ray_direction);
+	
+            return ray(ray_origin, ray_direction, ray_time);
         }
         vec3 sample_square() const {
             // Returns the vector to a random point in the [-.5,-.5]-[+.5,+,5]
