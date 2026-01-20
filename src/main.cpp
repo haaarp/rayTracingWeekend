@@ -1,5 +1,11 @@
 #include "rtweekend.h"
 
+#include "bvh.h"
+#include "camera.h"
+#include "hittable.h"
+#include "hittable_list.h"
+#include "material.h"
+#include "sphere.h"
 #include "camera.h"
 #include "hittable_list.h"
 #include "sphere.h"
