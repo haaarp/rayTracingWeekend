@@ -13,7 +13,7 @@
 int main() {
     hittable_list world;
 
-    auto ground_material = make_shared<lambertian>(color(0.0, 0.5, 0.5));
+    auto ground_material = make_shared<lambertian>(color(0.2, 0.5, 0.5));
     world.add(make_shared<sphere>(point3(0,-1000,0), 1000, ground_material));
 
     for (int a = -11; a < 11; a++) {
