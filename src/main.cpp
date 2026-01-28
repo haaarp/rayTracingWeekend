@@ -13,7 +13,7 @@
 int main() {
     hittable_list world;
 
-    auto ground_material = make_shared<lambertian>(color(0.2, 0.5, 0.5));
+    auto ground_material = make_shared<lambertian>(color(0.0, 0.2, 0.2));
     world.add(make_shared<sphere>(point3(0,-1000,0), 1000, ground_material));
 
     for (int a = -11; a < 11; a++) {
@@ -45,8 +45,8 @@ int main() {
         }
     }
 
-    auto material1 = make_shared<dielectric>(1.5);
-    world.add(make_shared<sphere>(point3(0, 1, 0), 1.0, material1));
+    auto material_glass = make_shared<dielectric>(1.5);
+    world.add(make_shared<sphere>(point3(0, 1, 0), 1.0, material_glass));
 
     auto material2 = make_shared<lambertian>(color(0.4, 0.2, 0.1));
     world.add(make_shared<sphere>(point3(-4, 1, 0), 1.0, material2));
@@ -57,7 +57,7 @@ int main() {
     camera cam;
 
     cam.aspect_ratio      = 16.0 / 9.0;
-    cam.image_width       = 1200;
+    cam.image_width       = 256;
     cam.samples_per_pixel = 400;
     cam.max_depth         = 50;
 
