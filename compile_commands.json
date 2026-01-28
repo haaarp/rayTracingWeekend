@@ -1,0 +1,16 @@
+[
+  {
+    "file": "src/main.cpp",
+    "arguments": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-DNDEBUG",
+      "-o",
+      "rayTracing",
+      "src/main.cpp"
+    ],
+    "directory": "/home/kasimir/code/rayTracingWeekend",
+    "output": "rayTracing"
+  }
+]
