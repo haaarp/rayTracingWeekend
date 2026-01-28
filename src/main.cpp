@@ -6,14 +6,11 @@
 #include "hittable_list.h"
 #include "material.h"
 #include "sphere.h"
-#include "camera.h"
-#include "hittable_list.h"
-#include "sphere.h"
 
 int main() {
     hittable_list world;
 
-    auto ground_material = make_shared<lambertian>(color(0.0, 0.2, 0.2));
+    auto ground_material = make_shared<lambertian>(color(0.4, 0.1, 0.2));
     world.add(make_shared<sphere>(point3(0,-1000,0), 1000, ground_material));
 
     for (int a = -11; a < 11; a++) {
@@ -58,7 +55,7 @@ int main() {
 
     cam.aspect_ratio      = 16.0 / 9.0;
     cam.image_width       = 256;
-    cam.samples_per_pixel = 400;
+    cam.samples_per_pixel = 500;
     cam.max_depth         = 50;
 
     cam.vfov     = 40;

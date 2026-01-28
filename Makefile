@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++17
 
-RLSCXXFLAGS = -O2 -DNDEBUG
-DBGCXXFLAGS = -O0 -g
+RLSCXXFLAGS = -O1 -DNDEBUG
+DBGCXXFLAGS = -O0 -g -fno-omit-frame-pointer
 
 SRCFILES = src/main.cpp
 OFILES = src/*.h
@@ -20,6 +20,9 @@ test: rayTracing
 
 debug: rayTracingDebug
 	gdb rayTracingDebug
+
+profile: rayTracingDebug
+	perf record ./rayTracingDebug
 
 clean:
 	rm -f rayTracing rayTracingDebug
