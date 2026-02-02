@@ -39,9 +39,9 @@ rayTracingProfile: $(SRCFILES) $(OFILES)
 test: rayTracing
 	mkdir -p $(IMGDIR)
 	TS=$$(date +%Y%m%d_%H%M%S); \
-	./$(BUILDDIR)/$(BINNAME) > $(IMGDIR)/render_$(TS).ppm && \
-	magick $(IMGDIR)/render_$(TS).ppm $(IMGDIR)/render_$(TS).png; \
-	gwenview $(IMGDIR)/render_$(TS).ppm
+	./$(BUILDDIR)/$(BINNAME) > $(IMGDIR)/render_$$TS.ppm && \
+	magick $(IMGDIR)/render_$$TS.ppm $(IMGDIR)/render_$$TS.png && \
+	gwenview $(IMGDIR)/render_$$TS.png
 
 
 debug: rayTracingDebug
