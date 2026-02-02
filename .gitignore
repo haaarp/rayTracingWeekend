@@ -2,4 +2,7 @@ builds/*
 my_img.ppm
 rayTracing
 .cache
-
+.ccs
+.ycm_extr_conf.py
+brdf.h
+target/*

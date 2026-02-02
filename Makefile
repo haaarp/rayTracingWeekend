@@ -4,27 +4,31 @@ CXXFLAGS = -std=c++17
 RLSCXXFLAGS = -O1 -DNDEBUG
 DBGCXXFLAGS = -O0 -g -fno-omit-frame-pointer
 
+BUILDDIR= build
 SRCFILES = src/main.cpp
 OFILES = src/*.h
 
+COMPILE= $(CXX) $(RLSCXXFLAGS)  $(SRCFILES) -o $(BUILDDIR)
+COMPILEDEBUG= $(CXX) $(DBGCXXFLAGS) $(SRCFILES) -o $(BUILDDIR)
+
 rayTracing: $(SRCFILES) $(OFILES)
-	g++ $(CXXFLAGS) $(RLSCXXFLAGS) -o rayTracing $(SRCFILES)
+	$(COMPILE)/rayTracing
 
 rayTracingDebug: $(SRCFILES) $(OFILES)
-	g++ $(CXXFLAGS) $(DBGCXXFLAGS) -o rayTracingDebug $(SRCFILES)
+	$(COMPILEDEBUG)/rayTracingDebug
 
 .PHONY: test clean debug
 
 test: rayTracing
-	./rayTracing > my_img.ppm && gwenview my_img.ppm
+	cd $(BUILDDIR); ./rayTracing > my_img.ppm ; gwenview my_img.ppm
 
 debug: rayTracingDebug
-	gdb rayTracingDebug
+	gdb $(BUILDDIR)/rayTracingDebug
 
 profile: rayTracingDebug
-	perf record ./rayTracingDebug
+	perf record ./$(BUILDDIR)/rayTracingDebug
 
 clean:
-	rm -f rayTracing rayTracingDebug
+	rm -f $(BUILDDIR)/*
 
 
