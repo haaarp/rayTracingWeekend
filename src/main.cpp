@@ -154,13 +154,16 @@ void cornell_box() {
     world.add(make_shared<quad>(point3(0,0,555), vec3(555,0,0), vec3(0,555,0), white));
 
     auto material_glass = make_shared<dielectric>(1.5);
-    world.add(make_shared<sphere>(point3(295, 165, 230), 100.0, material_glass));
+    world.add(make_shared<sphere>(point3(100, 165, 230), 80.0, material_glass));
+
+    auto material_dielectric = make_shared<metal>(color(0.2, 0.4, 0.9), 0.0);
+    world.add(make_shared<sphere>(point3(350, 200, 200), 90, material_dielectric));
 
     camera cam;
 
     cam.aspect_ratio      = 1.0;
-    cam.image_width       = 1920;
-    cam.samples_per_pixel = 10000;
+    cam.image_width       = 800;
+    cam.samples_per_pixel = 1000;
     cam.max_depth         = 50;
     cam.background        = color(0,0,0);
 
@@ -182,7 +185,7 @@ void cornell_box() {
 
 
 int main(){
-    switch(5) {
+    switch(1) {
         case 1: triple_spheres_checker(); break;
         case 2: checkered_spheres(); break;
         case 3: quads(); break;
