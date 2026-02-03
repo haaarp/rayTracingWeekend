@@ -3,5 +3,3 @@ my_img.ppm
 rayTracing
 .cache
 .ccs
-.ycm_extr_conf.py
-target/*
