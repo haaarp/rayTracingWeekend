@@ -3,3 +3,9 @@ my_img.ppm
 rayTracing
 .cache
 .ccs
+<<<<<<< HEAD
+=======
+.ycm_extr_conf.py
+brdf.h
+target/*
+>>>>>>> bhv
