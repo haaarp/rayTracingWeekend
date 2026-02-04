@@ -9,7 +9,36 @@
 #include "texture.h"
 #include "quad.h"
 
-int triple_spheres_checker() {
+void red_sphere() {
+    hittable_list world;
+
+    auto lambertian_material = make_shared<lambertian>(color(1.0, 0.0, 0.0));
+    world.add(make_shared<sphere>(point3(0, 0, 0), 1, lambertian_material));
+
+    auto light = make_shared<diffuse_light>(color(4, 4, 4));
+    world.add(make_shared<sphere>(point3(0, 10, 0), 4.0, light));
+
+    world = hittable_list(make_shared<bvh_node>(world));
+    camera cam;
+
+    cam.aspect_ratio      = 16.0 / 9.0;
+    cam.image_width       = 400;
+    cam.samples_per_pixel = 10;
+    cam.max_depth         = 10;
+    cam.background        = color(0.70, 0.80, 1.00);
+
+    cam.vfov     = 50;
+    cam.lookfrom = point3(0, 0, -5);
+    cam.lookat   = point3(0,0,0);
+    cam.vup      = vec3(0,1,0);
+
+    cam.defocus_angle = 1.0;
+    cam.focus_dist    = 1.0;
+
+    cam.render(world);
+}
+
+void triple_spheres_checker() {
     hittable_list world;
 
     auto checker = make_shared<checker_texture>(0.32, color(0.2, 0.1, 0.3), color(.9,.9,.9));
@@ -178,12 +207,6 @@ void cornell_box() {
 }
 
 
-
-
-
-
-
-
 int main(){
     switch(1) {
         case 1: triple_spheres_checker(); break;
@@ -191,6 +214,7 @@ int main(){
         case 3: quads(); break;
         case 4: simple_light(); break;
         case 5: cornell_box(); break;
+        case 6: red_sphere(); break;
     }
-
+    return 0;
 }
