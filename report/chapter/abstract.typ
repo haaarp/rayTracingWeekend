@@ -1,3 +1,3 @@
 #heading(level: 2, outlined: false, numbering: none)[Abstract]
 
-#lorem(150)
+Writing a ray tracer from scratch comes with many advantages. 

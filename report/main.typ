@@ -6,9 +6,8 @@
 
 
 #show: template.with(
-  // personal/subject related stuff
   author: "Kasimir Rothbauer",
-  title: "Notes in ATCG",
+  title: "Writing Your Own Ray Tracer",
   supervisor1: "Dr. Rubén Jesús García-Hernández",
   program: "Advanced Topics in Computer Graphics",
   university: "LMU",
@@ -35,13 +34,9 @@
 
 // ------------------- content -------------------
 
-//#include "chapter/introduction.typ"
-//#include "chapter/dummy_chapter.typ"
-//#include "chapter/conclusions_outlook.typ"
+#include "chapter/rtweekend.typ"
 #include "chapter/lectureNotes.typ"
 
 // ------------------- bibliography -------------------
 #bibliography("References.bib")
 
-// ------------------- declaration -------------------
-#include "chapter/declaration.typ"
