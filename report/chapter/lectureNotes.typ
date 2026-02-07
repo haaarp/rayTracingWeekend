@@ -1,6 +1,7 @@
 #import "../customization/great-theorems-customized.typ": *
 #set heading(numbering: none)  // Heading numbering
 #set math.equation(numbering: "(1)")
+
 = Appendix
 #counter(heading).update(1)
 
@@ -17,30 +18,28 @@
 == Rainbows<sec:rainbows>
 @rainbows
 
-Rainbows are not fully understood, especially the rare _twinned rainbow_ which
+While being around for a long time, rainbows are still not fully understood, especially the rare _twinned rainbow_ which
 can be seen in @twinnedRainbow. However, advancements have been
 made by #cite(<rainbows>, form: "prose"), by ray tracing non-spherical water
 drops. The provided @dropVisualization is helpful to understand the rainbow
 creation process. 
 
-The work extends Lorenz-Mie theory by ray tracing nonspherical water drops. A
+The work extends Lorenz-Mie theory by ray tracing non-spherical water drops. A
 simulation needs to include the following aspects:
 
 - _Diffraction_ (scattering of light, white band)
 - _Geometric optics_ (primary and secondary arc)
-- _Interference_ (supernumary arcs)
+- _Interference_ (supernumerary arcs)
 - _Polarization_ (polarization of primary and secondary arc)
 
-
-=== Supernumary arcs<subsec:supernumaryArcs>
+=== Supernumerary arcs<subsec:supernumaryArcs>
 
 Because of different path length there are additional rays which result in
-supernumary arcs (See @dropVisualization (c)). This can not be explained
+supernumerary arcs (See @dropVisualization (c)). This can not be explained
 with purely geometric optics.
 
 In @leeDiagram are the primary and secondary arc clearly visible, together with
-the Alexander band.
-
+the Alexander band (dark area between rainbows).
 
 #figure(
   image("../images/leeDiagram.png", width: 60%),
@@ -71,7 +70,7 @@ the Alexander band.
 
 
 
-== Birefringence and Iridescence<sec:birefringence>
+== Birefringence and Iridescence<sec:birefringence> by #cite(label("DBLP:journals/cgf/Steinberg19"), form: "prose")
 
 
 #remark(title: "Note")[
@@ -80,9 +79,8 @@ the Alexander band.
 #cite(<demtroder2019electrodynamics>, form: "prose") again...
 ]
 
-#cite(label("DBLP:journals/cgf/Steinberg19"))
 
-When polarized light waves have different paths through a an
+When polarized light waves have different paths through an
 _anisotropic_ optically transmissive
 medium (transparent) depending on their polarization it is called
 _birefringence_. Color changes based on viewing angle is called _iridescence_.
@@ -124,7 +122,8 @@ Iridescence is most drastic when seen through a polarization filter.
 
 == Ray Tracing Special Relativity 
 
-by #cite(label("DBLP:journals/tvcg/MullerGW10"), form: "prose") renders polygons while
+by #cite(label("DBLP:journals/tvcg/MullerGW10"), form: "prose"). The methods in
+the paper render polygons while
 taking special relativistic effects into account. Vectors in 3D have one
 additional vector in the time dimension (Minkowsky spacetime). $(c t,x,y,z)^T$ and
 $(c t, x', y', z')^T$. The time is multiplied by c to have the same units in
@@ -139,7 +138,7 @@ both systems.
 
 When using Polygons instead of ray tracing, some parts of a model render
 incorrectly (see @clipRelativistic). The method of this paper can render
-the _doppler effect_, _color shifts_ and the _searchlight effect_.
+the _Doppler effect_, _color shifts_ and the _searchlight effect_.
 
 #figure(
   image("../images/clipRelativistic.png", width: 60%),
