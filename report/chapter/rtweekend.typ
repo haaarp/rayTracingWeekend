@@ -9,14 +9,10 @@
 by #cite(<Shirley2025RTW1>, form: "prose") on the website
 https://raytracing.github.io
 
-== C++ Notes
+== C++ References
 
 - https://makefiletutorial.com/
 - https://www.learncpp.com/cpp-tutorial
-- Using #text(font: "hack", fill:orange)[auto] let's the compiler infer the
-  type of the variable. Useful whenever the type changes somewhere else in the
-  code.
-
 
 == Ray calculation
 
