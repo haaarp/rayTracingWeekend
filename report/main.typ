@@ -37,7 +37,6 @@
 // ------------------- content -------------------
 
 #include "./chapter/introduction.typ"
-#include "./chapter/algorithm_overview.typ"
 #include "./chapter/rtweekend.typ"
 #include "./chapter/lectureNotes.typ"
 #include "./chapter/presentation.typ"
