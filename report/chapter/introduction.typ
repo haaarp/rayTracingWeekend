@@ -4,7 +4,7 @@
 
 The book series are a tutorial to create a ray tracer from scratch in C++. My
 work implemented this tutorial and documented the progress with graphics of the
-rendered images. 
+rendered images. The
 
 == Overview
 

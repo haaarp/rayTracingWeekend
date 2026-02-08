@@ -144,15 +144,10 @@ following
 
 == Diffuse Surfaces
 
-- any incoming ray will either be absorbed or reflected
-- if reflected new ray in random direction with cosine 
-- if absorbed color at that point
-- more bounce = more dark
-- depending on material
+With deffuse surfaces, any incoming ray will either be absorbed or reflected.
+The darker a material the more often the ray will be absorbed than reflected.
 
-Creating a random point on a unit sphere is surprisingly
-complicated. The method used for our approach is to generate a unit square, and
-then discard any random vector that lies outside the sphere (see
+Any reflected ray will bounce of in a random direction. But creating a random point on a unit sphere is surprisingly complicated. The method used for our approach is to generate a unit square, and then discard any random vector that lies outside the sphere (see
 @randomSampleSphere). 
 
 #figure(
@@ -162,7 +157,7 @@ then discard any random vector that lies outside the sphere (see
 ) <randomSampleSphere>
 
 We then normalize the random vector (pointing on the surface of the unit sphere)
-and check whether it points inside the material (using dot product pos or negative)
+and check whether it points inside the material (using dot product positive or negative)
 
 #figure(
   image("../images/isVectorInSurface.jpg", width: 60%),
@@ -190,33 +185,24 @@ and check whether it points inside the material (using dot product pos or negati
   image("../images/lamberitanDistribution.png"),
   caption: [ Lambertian Distribution as in @lambertianDistribution by Inductiveload - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=5290437 ]  
 ) <lambertianDistributionWiki>
-== Shadow Acne
+
+#remark(title: "Shadow Acne")[
 
 When a ray bounces of the material it might happen, that rounding
 errors in the floating point arithmetic cause a ray to bounce inside the
-material. This may cause the 
+material. This may cause the material to appear darker than it really is as the
+rays bounce too often inside the material. This effect is called shadow acne and
+can be prevented by adding _padding_.
+
+]
 
 == Metals 
 
-- either absorb the ray or reflect
-- this time reflection is always incoming ray angle = outgoing ray angle
+Similarly to lambertian materials, metals also either reflect or absorb any ray.
+But instead of reflecting the ray according to the @lambertianDistribution, rays
+will have the same angle as the incoming ray (see @reflectionVecotr). This makes
+the material shiny and reflects like a mirror.
 
-- when creating fuzziness we adjust the outgoing ray angle
-- create a new random vector from outgoing vector and add them figi
-- more fuzz = larger vector
-
-== Glass
-
-- if ray hits glass ray will be refracted
-- depends on angle of refraction
-- Snells law 
-- if putting air bubble inside glass there is even inter reflection
-
-
-
-
-
-== Metals 
 
 #figure(
   image("../images/spheres_metallic_diffuse.png"),
@@ -233,37 +219,54 @@ material. This may cause the
   caption: [ Prettier spheres ] 
 ) <spheres_metallic>
 
+=== Fuzziness
+
+To create brushed off or fuzzy metallic surfaces we additionally add a new
+random vector from the reflected ray like in @creating_fuzzingess. The higher
+the fuzz value, the bigger the vector will get. This effect causes the materials
+to appear like in @spheres_fuzzed.
+
+It is important to also account for when a ray comes from which refractive
+index. 
+
 #figure(
-  image("../images/creating_fuzzingess.jpg"),
+  image("../images/creating_fuzzingess.jpg", width: 60%),
   caption: [ Creating fuzziness by adding a random vector to our reflected ray. ] 
 ) <creating_fuzzingess>
 
 #figure(
-  image("../images/spheres_fuzzed.png"),
+  image("../images/spheres_fuzzed.png", width: 60%),
   caption: [ Fuzzed spheres ] 
 ) <spheres_fuzzed>
 
-== Dielectrics
+== Dielectrics 
+
+If rays hit dielectric materials like glass, the rays won't get absorbed but
+will get refracted. The new ray calculation upon material hit will take on the
+form of Snells laws.
 
 #figure(
-  image("../images/sphere_glass.png"),
+  image("../images/sphere_glass.png", width: 60%),
   caption: [ Fully reflective glass sphere with $eta = 1.4$ ] 
 ) <sphere_glass>
 
 #figure(
-  image("../images/sphere_glass_with_air_bubble.png"),
+  image("../images/sphere_glass_with_air_bubble.png", width: 60%),
   caption: [ Glass sphere with an air bubble inside. Using refraction and internal
   reflection. ] 
 ) <sphere_glass_with_air_bubble>
 
 
+
+== Defocus Blur
+
 #figure(
-  image("../images/spheres_diff_view_fov.png"),
+  image("../images/spheres_diff_view_fov.png", width: 60%),
   caption: [ Changing the fov to 20 instead of 60 ]
 ) <spheres_diff_view_fov>
 
 #figure(
-  image("../images/spheres_blurry.png"),
+  image("../images/spheres_blurry.png", width: 60%),
   caption: [ Using _defocus blur_ to simulate _depth of field_ ] 
 ) <spheres_blurry>
 == Using own Camera Class
@@ -272,7 +275,7 @@ After moving the camera to an own class, we can use different angles and
 focal points for our spheres.
 
 #figure(
-  image("../images/spheres_different_view.png"),
+  image("../images/spheres_different_view.png", width: 60%),
   caption: [ Different view of the spheres ] 
 ) <SpheresDiffView>
 
@@ -299,6 +302,8 @@ To speed things up we introduce bounding volumes. With these the ray-object
 intersection calculations. We can reduce the time to search for an object
 by introducing these bounding volumes. With this we can bring down the search
 to a logarithmic time.
+
+
 #figure(
   image("../images/fig-2.01-bvol-hierarchy.jpg"),
   caption: [ Bounding Volumes Hierarchy. Note that the bounding volumes can
@@ -312,5 +317,6 @@ Depending on the scene, we can decide how to efficiently split up the scene. For
 example when we want to render a world where there are sticks just pointing
 vertically in the sky, we might want to split the scene in vertical stripes,
 without a horizontal component. 
+
 
 
