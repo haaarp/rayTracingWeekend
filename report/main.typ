@@ -7,7 +7,7 @@
 
 #show: template.with(
   author: "Kasimir Rothbauer",
-  title: "Writing Your Own Ray Tracer",
+  title: "Your Own Ray Tracer In C++",
   supervisor1: "Dr. Rubén Jesús García-Hernández",
   supervisor2: "",
   program: "Advanced Topics in Computer Graphics",
@@ -36,11 +36,11 @@
 
 // ------------------- content -------------------
 
-#include "chapter/introduction.typ"
-#include "chapter/algorithm_overview.typ"
-#include "chapter/rtweekend.typ"
-#include "chapter/lectureNotes.typ"
-#include "chapter/presentation.typ"
+#include "./chapter/introduction.typ"
+#include "./chapter/algorithm_overview.typ"
+#include "./chapter/rtweekend.typ"
+#include "./chapter/lectureNotes.typ"
+#include "./chapter/presentation.typ"
 
 // ------------------- bibliography -------------------
 #bibliography("References.bib")
