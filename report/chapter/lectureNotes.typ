@@ -2,7 +2,7 @@
 #set heading(numbering: none)  // Heading numbering
 #set math.equation(numbering: "(1)")
 
-= Appendix
+= Appendix: Lecture Notes
 #counter(heading).update(1)
 
 #set heading(numbering: "A.1", supplement: [Appendix])  // Defines Appendix numbering
@@ -49,7 +49,7 @@ the Alexander band (dark area between rainbows).
 ) <leeDiagram>
 
 #figure(
-  image("../images/waterdropVisualizationRay.png", width: 60%),
+  image("../images/waterdropVisualizationRay.png", width: 100%),
   caption: [Generation of rainbows from the point of view of geometric
   optics and wave optics: (a) primary rainbow angle, after a single internal
   reflection; (b) secondary rainbow angle, after two internal reflections; (c)
@@ -99,7 +99,7 @@ Iridescence is most drastic when seen through a polarization filter.
   into linearly-polarized ordinary and extraordinary rays. Note that the
   extraordinary Poynting vector leaves the plane of incidence (Y Z) and is
   detached from its wave’s direction of propagation. The incident parameter K
-  and the normal modes $q^−_o$, $q_e^−$ for the (un-normalized) ordinary and
+  and the normal modes $q^−_o$, $q_e^−$ for the (not normalized) ordinary and
   extraordinary waves are marked. The incidence parameter remains constant
   across surface boundaries for all participating waves. ]
 )<randomlyPolarizedWavehittingMaterial>
@@ -142,13 +142,11 @@ the _Doppler effect_, _color shifts_ and the _searchlight effect_.
 
 #figure(
   image("../images/clipRelativistic.png", width: 60%),
-  caption: [ Clipped part because of polygons (Top). Coorectly ray traced
+  caption: [ Clipped part because of polygons (Top). Correctly ray traced
   (Bottom) ] 
 ) <clipRelativistic>
 
 Cannot be applied to moving objects why?
-
-
 
 
 
@@ -189,16 +187,16 @@ hole, and is therefore not symmetric (see @paintSwatch).
 
 == Tetrachromatic Vision
 
-The human eye has two types of photorecepters. While rods are used for low light
+The human eye has two types of photoreceptors. While rods are used for low light
 scenarios and are used mostly for our peripheral vision, cones are used for
-color vision (phototopic vision) and are mostly concentrated in the middle of
+color vision (phototropic vision) and are mostly concentrated in the middle of
 our FOV. 
 
 There exist three cones the human vision responsible for respectively
 blue, green and red light (see @Cones_SMJ2_E). Human vision is so called
 trichromatic vision due to the three cones. 
 
-Tetrachromatic vision extrends the trichromatic vision. While humans generally
+Tetrachromatic vision extends the trichromatic vision. While humans generally
 don't have this type of vision, there has been one case, where another cone sat
 between the green and red cone. 
 
@@ -231,14 +229,13 @@ caption: [ Reflection and refraction on a sphere. ]
 ) <ReflactionRefraction>
 
 
-
 == Setup VNC
 
-`pacman -Syu tigervnc`
+Install `tigervnc` client: `pacman -Syu tigervnc`
 
-On the server:
+Same on the server: `pacman -Syu tigervnc`
 
-`pacman -Syu tigervnc`
+Open the necessary ports on the server:
 
 `firewall-cmd --add-service=vnc-server`
 
@@ -293,17 +290,19 @@ bigger models, my system ran out of RAM and crashed.
     image("../images/Chalet1.png"),
     image("../images/Chalet2.png")
   ),
-  caption: [ Prompting for a chalet in Swiss. The negative prompt contains
-  the keyword "snow" in the second picture ] 
+  caption: [ Prompt: "Chalet in Swiss". The right image additionally
+  contains the word _snow_ in the _negative prompt_ ] 
 ) <Chalets>
 
 #figure(
 image("../images/birdHut.png"),
-caption: [ Prompt: "Two birds in the sky with a hut in the woods". IDK what
-happened here. ] 
+caption: [ Prompt: "Two birds in the sky with a hut in the woods". ]
 ) <birdHut>
 
-= Computergraphic Notes
+
+= Notes from Computer Graphics 1
+
+Course from summer semester 2025: https://moodle.lmu.de/course/view.php?id=39021
 
 #figure(
   image("../images/cameraModel.png", width: 60%),
@@ -326,13 +325,15 @@ each point by its 4th coordinate $w$
 ) <RenderingEquation>
 
 
-== Vulkan Tutorial
+= Vulkan Tutorial
 
 Vulkan can be very fast because everything is done implicit. This means to do
 basic things you also have to be implicit about the whole thing. Meaning
 setup of graphic cards and so on. This leads to a lot of boilerplate code.
 
-=== Tutorial 
+== Triangle Tutorial
+
+From https://vulkan-tutorial.com/
 
 #remark(title: "Steps to draw a triangle:")[
 - Create a VkInstance
@@ -341,24 +342,24 @@ setup of graphic cards and so on. This leads to a lot of boilerplate code.
 - Create a window, window surface and swap chain
 - Wrap the swap chain images into VkImageView
 - Create a render pass that specifies the render targets and usage
-- Create framebuffers for the render pass
+- Create frame buffers for the render pass
 - Set up the graphics pipeline
 - Allocate and record a command buffer with the draw commands for every possible swap chain image
 - Draw frames by acquiring images, submitting the right draw command buffer and returning the images back to the swap chain
 ]
 
 
-#shellcommands(title: "Prerequisites Vulkan OpenSUSE")[ `$ sudo zypper in glm-devel vulkan-devel shaderc libXi-devel libglfw-devel libXxf86vm-devel` ]
+#shellcommands(title: "Prerequisites Vulkan for OpenSUSE Linux")[ `$ sudo zypper in glm-devel vulkan-devel shaderc libXi-devel libglfw-devel libXxf86vm-devel` ]
 
-==== Coding Conventions
+=== Coding Conventions
 
 Functions are written with lowercase `vk`, while structs and enums are `Vk` and
 enumerations have a `VK_` prefix.
 
 Structs are very heavily used in Vulkan. To create a C++ struct first initialize
-an empty strutct with `VkCreateInfo createInfo{};` (note the `Vk` prefix). 
+an empty struct with `VkCreateInfo createInfo{};` (note the `Vk` prefix). 
 
-==== Validation Layers
+=== Validation Layers
 
 Vulkan does not check for any errors to be as fast as possible.
 Validation Layers provide access to some debug functionality. When in debug mode
@@ -382,11 +383,11 @@ const std::vector<const char*> validationLayers = {
     we need to check whether our GPU supports a queues
 #else
 Using optional as the indices could be anything, and we need to provide a way to
-say "Nope, nothing found!"const bool enableValidationLayers = true;
+say "Nothing found!"const bool enableValidationLayers = true;
 #endif
 ```
 
-== OpenGL
+= OpenGL Tutorial
 
 OpenGL is the predecessor of Vulkan also by Khronos Group. 
 
@@ -395,15 +396,13 @@ OpenGL is the predecessor of Vulkan also by Khronos Group.
   Similar to Vulkan, OpenGL also uses glfw3. So for window creation we need to
   compile our C++Code with `-lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl` ]
 
-=== Triangle Tutorial
+== Triangle Tutorial
 
 From https://learnopengl.com/Getting-started/Hello-Triangle
 
 
 The rendering pipeline can be used to create 2D object from a 3D system.
-With a shader we can modify objects (eg. color).
-
-==== Shaders
+With a shader we can modify objects (e.g. color).
 
 1. Vertex shader:
 
@@ -411,9 +410,9 @@ Takes a single vertex as input and performs transformations. (Maybe used for
 rotation? Together with a matrix?) OpenGL supports at least 16 #text(fill:
 olive)[vertex attributes]. 
 
-You can't modify shaders from another shader per se, they always take an input
+You can't modify shaders from another shader perse, they always take an input
 and give out an output. These are the primary ways to pass information between
-shaders. There is however a way of accessing shader veraibles and so on with the 
+shaders. There is however a way of accessing shader variables and so on with the 
 #text(font: "hack")[uniform] keyword.
 
 #remark(title: "C Programming Note")[

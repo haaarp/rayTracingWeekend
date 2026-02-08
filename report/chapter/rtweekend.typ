@@ -4,6 +4,17 @@
 // own imports
 #import "../customization/great-theorems-customized.typ": *
 
+= The student should prepare a written report about his topic following the following schema:
+
+- Start with the introduction: *What is your topic and what have other researchers done in that topic, with references*
+- Add a 2nd section with *In detail description of the algorithms you want to implement*
+- Implement your algorithms in your engine of choice
+- Start testing and document the issues you have *this will become section 3*
+- Fix the issues and document your solution *this will become section 4*
+- Document further possible work which could enhance your results *This will become section 5: Future work.*
+- Presentation: *This will become Appendix A.*
+- Add your comments about the additional material mentioned during the class. *This will become Appendix B.*
+
 = Ray Tracing in a Weekend <chapter:rtweekend>
 
 by #cite(<Shirley2025RTW1>, form: "prose") on the website
