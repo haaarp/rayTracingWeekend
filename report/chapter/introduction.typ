@@ -4,12 +4,10 @@
 
 The book series are a tutorial to create a ray tracer from scratch in C++. My
 work implemented this tutorial and documented the progress with graphics of the
-rendered images. The
+rendered images. There are three different materials implemented (diffuse, metal
+and glass). Some mathematical formulas that interested me are also included.
 
 == Overview
-
-I present simple explanations of algorithms implemented. The main code will be
-in C++. 
 
 - remark
 - ppm image format

@@ -38,6 +38,11 @@ calculate the color if the ray does not propagate further. Depending on the
 material the ray hits, different colors and ray bounce directions will be taken.
 If the ray goes to infinity (or a specified maximum distance), the color will be the background color of the scene.
 
+#remark(title: "PPM Image Format")[
+  A simple way to generate images is to use the .ppm image format. An RGB value
+  is specified for each pixel in plain text form. A simple header will set the
+  dimension and bit values. ]
+
 The ray can be implemented as a simple vector in 3 dimensions. By using an
 additional value `t` as a scalar the ray can simply be extended in the scene
 (see @linearInterpolation).
@@ -290,6 +295,9 @@ focal points for our spheres.
 
 == Adding Movement
 
+By choosing yet again a random value for each ray between an interval of the
+sphere we can create motion blur. 
+
 #figure(
   image("../images/spheres_moving.png"),
   caption: [ Moving spheres. ] 
@@ -317,6 +325,5 @@ Depending on the scene, we can decide how to efficiently split up the scene. For
 example when we want to render a world where there are sticks just pointing
 vertically in the sky, we might want to split the scene in vertical stripes,
 without a horizontal component. 
-
 
 
