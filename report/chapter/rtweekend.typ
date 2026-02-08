@@ -12,13 +12,16 @@
 - Start testing and document the issues you have *this will become section 3*
 - Fix the issues and document your solution *this will become section 4*
 - Document further possible work which could enhance your results *This will become section 5: Future work.*
-- Presentation: *This will become Appendix A.*
-- Add your comments about the additional material mentioned during the class. *This will become Appendix B.*
 
 = Ray Tracing in a Weekend <chapter:rtweekend>
 
 by #cite(<Shirley2025RTW1>, form: "prose") on the website
 https://raytracing.github.io
+
+The book series are a tutorial to create a ray tracer from scratch in C++ for
+acceptable performance. 
+
+
 
 == C++ References
 
